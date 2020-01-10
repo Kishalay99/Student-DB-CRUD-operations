@@ -1,5 +1,6 @@
 import mysql.connector
 import json
+from datetime import datetime
 
 mydb = mysql.connector.connect(host='localhost', user='kishalay', passwd='master$123', database='students')
 cur = mydb.cursor()
@@ -27,3 +28,21 @@ class students_services:
 			data.append(entry)
 		print('data fetched')
 		return json.dumps(data)
+
+	def insert(self, data):
+		name = data['name']
+		dob = datetime.strptime(data['dob'], '%y/%m/%d')
+		gender = data['gender']
+		branch = data['branch']
+		query = "insert into student (name, dob, gender, branch) values (%s,%s,%s,%s)"
+		values = (name,dob,gender,branch)
+		cur.execute(query,values)
+		if(cur.rowcount==1):
+			return True
+		else:
+			return False
+
+	def update(self):
+		pass
+	def delete(self):
+		pass

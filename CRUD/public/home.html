@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<title>CRUD</title>
+	<script src="home.js"></script>
+</head>
+<body onload="myScript()">
+	<div id='data'></div><br><br>
+	<input id='addBtn' type='button' value='Add Student' onclick="showForm()"><br><br>
+	
+	<div id='form' style='display:none;'>
+		<form method='post' action='127.0.0.1:8000/test'>
+			<fieldset>
+				<legend>Student Entry</legend>
+				<label>Name: <input type='text' id='name'></label><br><br>
+				<label>DOB: <input type='date' id='dob'></label><br><br>
+				<label>Gender: Male<input type='radio' name='gender'> Female<input type='radio' name='gender'></label><br><br>
+				<label>Branch: 
+					<select name='branch'>
+						<option name='branch'>--select--</option>
+						<option name='branch'>CSE</option>
+						<option name='branch'>ISE</option>
+						<option name='branch'>MECH</option>
+						<option name='branch'>ECE</option>
+					</select>
+				</label><br><br>
+				<input type='reset'>   
+				<input type='button' value='Add' onclick="addStudent()">
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>
