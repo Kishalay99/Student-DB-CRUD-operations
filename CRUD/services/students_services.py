@@ -47,6 +47,7 @@ class students_services:
 
 	def update(self):
 		pass
+	
 	def delete(self, sid):
 		fetch_query = 'select id from student'
 		cur.execute(fetch_query)
