@@ -47,5 +47,12 @@ class students_services:
 
 	def update(self):
 		pass
-	def delete(self):
-		pass
+	def delete(self, sid):
+		fetch_query = 'select id from student'
+		cur.execute(fetch_query)
+		if sid in cur:
+			del_query = 'delete from student where id = %s'
+			cur.execute(del_query,sid)
+			return True
+		else:
+			return False

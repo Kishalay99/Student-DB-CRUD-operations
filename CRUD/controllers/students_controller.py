@@ -21,6 +21,13 @@ class Students:
 			resp.body = 'Failed to insert student'
 		
 	def on_delete(self, req, resp):#delete
-		pass
+		sid = json.loads(req.stream.read())['id']
+		print(sid)
+		instance = students_services()
+		bool_val = instance.delete(sid)
+		if bool_val:
+			resp.body = 'Student deleted successfully'
+		else:
+			resp.body = 'Student with id '+sid+' doesn\'t exist'
 	def on_put(self, req, resp):#upsdate
 		pass
