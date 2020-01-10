@@ -30,10 +30,13 @@ class students_services:
 		return json.dumps(data)
 
 	def insert(self, data):
+		# print(type(data))
+		data = json.loads(data)
 		name = data['name']
-		dob = datetime.strptime(data['dob'], '%y/%m/%d')
+		dob = data['dob']#datetime.strptime(data['dob'], '%y/%m/%d')
 		gender = data['gender']
 		branch = data['branch']
+		print(dob)
 		query = "insert into student (name, dob, gender, branch) values (%s,%s,%s,%s)"
 		values = (name,dob,gender,branch)
 		cur.execute(query,values)
