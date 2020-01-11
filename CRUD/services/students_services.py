@@ -40,20 +40,43 @@ class students_services:
 		query = "insert into student (name, dob, gender, branch) values (%s,%s,%s,%s)"
 		values = (name,dob,gender,branch)
 		cur.execute(query,values)
+
 		if(cur.rowcount==1):
+			mydb.commit()
 			return True
 		else:
 			return False
 
-	def update(self):
-		pass
+	def update(self, data):
+		sid = data['id']
+		name = data['name']
+		dob = data['dob']
+		gender = data['gender']
+		branch = data['branch']
+
+		update_query = 'update student set name=%s, dob=%s, gender=%s, branch=%s where id=%s'
+		values = (name,dob,gender,branch,sid)
+		cur.execute(update_query, values)
+		if cur.rowcount!=0:
+			mydb.commit()
+			return True
+		else:
+			return False
 	
 	def delete(self, sid):
 		fetch_query = 'select id from student'
 		cur.execute(fetch_query)
-		if sid in cur:
+		res = cur.fetchall()
+		print(res)
+		all_ids = []
+		for tupl in res:
+			all_ids.append(str(tupl[0]))
+		print(all_ids)
+		if sid in all_ids:
 			del_query = 'delete from student where id = %s'
-			cur.execute(del_query,sid)
+			values = (sid, )
+			cur.execute(del_query,values)
+			mydb.commit()
 			return True
 		else:
 			return False

@@ -29,5 +29,13 @@ class Students:
 			resp.body = 'Student deleted successfully'
 		else:
 			resp.body = 'Student with id '+sid+' doesn\'t exist'
-	def on_put(self, req, resp):#upsdate
-		pass
+	
+	def on_put(self, req, resp):#update
+		data = json.loads(req.stream.read())
+		print(data)
+		instance = students_services()
+		bool_val = instance.update(data)
+		if bool_val:
+			resp.body = 'Student updated successfully'
+		else:
+			resp.body = 'Failed to update student'

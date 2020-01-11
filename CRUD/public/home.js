@@ -3,6 +3,7 @@ function reqListener () {
 	console.log('123')
 	console.log('xhttp', xhttp)
 	console.log(xhttp.responseText);
+	dataDiv.innerHTML += xhttp.responseText;
 }
 
 function myScript(){
