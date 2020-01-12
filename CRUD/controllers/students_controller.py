@@ -26,9 +26,11 @@ class Students:
 		instance = students_services()
 		bool_val = instance.delete(sid)
 		if bool_val:
+			print('delete executed successfully')
 			resp.body = 'Student deleted successfully'
 		else:
-			resp.body = 'Student with id '+sid+' doesn\'t exist'
+			print('failed to delete student')
+			resp.body = 'Student with id '+str(sid)+' doesn\'t exist'
 	
 	def on_put(self, req, resp):#update
 		data = json.loads(req.stream.read())
@@ -37,5 +39,7 @@ class Students:
 		bool_val = instance.update(data)
 		if bool_val:
 			resp.body = 'Student updated successfully'
+			print('updated successfully')
 		else:
 			resp.body = 'Failed to update student'
+			print('Failed to update student details')

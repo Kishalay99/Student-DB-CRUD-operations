@@ -70,7 +70,7 @@ class students_services:
 		print(res)
 		all_ids = []
 		for tupl in res:
-			all_ids.append(str(tupl[0]))
+			all_ids.append(tupl[0])
 		print(all_ids)
 		if sid in all_ids:
 			del_query = 'delete from student where id = %s'
