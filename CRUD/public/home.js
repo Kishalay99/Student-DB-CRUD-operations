@@ -31,15 +31,21 @@ function myScript(){
 		let counter=0;
 		for(counter;counter<json_obj.length;counter++){
 			console.log(json_obj[counter])
-			let doby = json_obj[counter].dob.slice(6,10)
+			let doby = json_obj[counter].dob.slice(6,10)//<input type="text" value="'+json_obj[counter].gender+'" id="gender'+json_obj[counter].id+'">
 			let dobm = json_obj[counter].dob.slice(3,5)
 			let dobd = json_obj[counter].dob.slice(0,2)
 			dataStr += '<tr>\
-							<td>'+json_obj[counter].id+'</td>\
+							<td><a href="http://127.0.0.1:8000/students/'+json_obj[counter].id+'">'+json_obj[counter].id+'</a></td>\
 							<td><input type="text" value="'+json_obj[counter].name+'" id="name'+json_obj[counter].id+'"></td>\
 							<td><input type="date" value="'+doby+'-'+dobm+'-'+dobd+'" id="dob'+json_obj[counter].id+'"></td>\
 							<td><input type="text" value="'+json_obj[counter].gender+'" id="gender'+json_obj[counter].id+'"></td>\
-							<td><input type="text" value="'+json_obj[counter].branch+'" id="branch'+json_obj[counter].id+'"></td>\
+							<td><select name="branch" id="branch'+json_obj[counter].id+'">\
+						<option value="'+json_obj[counter].branch+'">'+json_obj[counter].branch+'</option>\
+						<option value="cse">CSE</option>\
+						<option value="ise">ISE</option>\
+						<option value="mech">MECH</option>\
+						<option value="ece">ECE</option>\
+					</select></td>\
 							<td>'+json_obj[counter].last_updated+'</td>\
 							<td><input type=\'button\' value=\'Update\' onclick="updateStudent('+json_obj[counter].id+')" id="upd'+json_obj[counter].id+'"></td>\
 							<td><input type=\'button\' value=\'Delete\' onclick="deleteStudent('+json_obj[counter].id+')" id="del'+json_obj[counter].id+'"></td>\
